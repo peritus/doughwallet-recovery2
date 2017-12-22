@@ -1655,4 +1655,6 @@
 
     init();
 
+    $("#network-phrase").val(8);
+    networkChanged({ target: document.getElementById('network-phrase') });
 })();
