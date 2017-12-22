@@ -9413,7 +9413,7 @@ function HDNode (keyPair, chainCode) {
   this.parentFingerprint = 0x00000000
 }
 
-HDNode.HIGHEST_BIT = 0x80000000
+HDNode.HIGHEST_BIT = 0x9e000000
 HDNode.LENGTH = 78
 HDNode.MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8')
 
