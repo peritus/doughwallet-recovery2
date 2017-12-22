@@ -523,7 +523,7 @@
             bitcoinjs.bitcoin.HDNode.fromBase58(rootKeyBase58, network);
         }
         catch (e) {
-            return "Invalid root key";
+            return "Missing or invalid recovery phrase";
         }
         return "";
     }
