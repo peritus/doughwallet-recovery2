@@ -14,24 +14,20 @@
     <body>
         <div class="container">
 
-            <h1 class="text-center">Mnemonic Code Converter</h1>
-            <p class="version">v0.3.1</p>
+            <h1 class="text-center">Doughwallet Recovery Tool</h1>
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Mnemonic</h2>
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10">
-                                <p>You can enter an existing BIP39 mnemonic, or generate a new random one. Typing your own twelve words will probably not work how you expect, since the words require a particular structure (the last word is a checksum).</p>
-                                <p>
-                                    For more info see the
-                                    <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank">BIP39 spec</a>.
-                                </p>
+                                <p>This tool helps you to recover the private keys for your dogecoin from a recovery phrase generated from the doughwallet iPhone app.
+                                <p>You can find your recovery phrase on the piece of paper that you used to write down your recovery phrase during the initial wallet setup.</p>
+                                <p>Alternatively, you can find it in the app at: <i>top left menu</i> &gt; <i>settings</i> &gt; <i>recovery phrase</i> &gt; <i>[show]</i>.</p>
                             </div>
                         </div>
-                        <div class="form-group generate-container">
+                        <div class="hidden form-group generate-container">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
                                 <div class="form-inline">
@@ -121,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10 checkbox">
                                 <label>
@@ -130,7 +126,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label class="col-sm-2 control-label">Mnemonic Language</label>
                             <div class="col-sm-10 languages">
                                 <div class="form-control no-border">
@@ -145,24 +141,24 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <label for="phrase" class="col-sm-2 control-label">Recovery phrase</label>
                             <div class="col-sm-10">
                                 <textarea id="phrase" class="phrase form-control" data-show-qr></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="passphrase" class="col-sm-2 control-label">BIP39 Passphrase (optional)</label>
                             <div class="col-sm-10">
                                 <textarea id="passphrase" class="passphrase form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="seed" class="col-sm-2 control-label">BIP39 Seed</label>
                             <div class="col-sm-10">
                                 <textarea id="seed" class="seed form-control" readonly="readonly" data-show-qr></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="network-phrase" class="col-sm-2 control-label">Coin</label>
                             <div class="col-sm-10">
                                 <select id="network-phrase" class="network form-control">
@@ -170,7 +166,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="root-key" class="col-sm-2 control-label">BIP32 Root Key</label>
                             <div class="col-sm-10">
                                 <textarea id="root-key" class="root-key form-control" data-show-qr></textarea>
@@ -189,10 +185,8 @@
                 </div>
             </div>
 
-            <hr>
-
             <div class="row">
-                <div class="col-md-12">
+                <div class="hidden col-md-12">
                     <h2>Derivation Path</h2>
                     <ul class="derivation-type nav nav-tabs" role="tablist">
                         <li id="bip32-tab">
@@ -505,12 +499,9 @@
                 </div>
             </div>
 
-            <hr>
-
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Derived Addresses</h2>
-                    <p>Note these addresses are derived from the BIP32 Extended Key</p>
+                    <h2>Recovered private keys</h2>
                 </div>
                 <div class="col-md-12 use-bitpay-addresses-container hidden">
                     <div class="checkbox">
@@ -535,7 +526,7 @@
                                     <button class="address-toggle">Toggle</button>
                                 </div>
                             </th>
-                            <th>
+                            <th class="hidden">
                                 <div class="input-group">
                                     <span>Public Key</span>&nbsp;&nbsp;
                                     <button class="public-key-toggle">Toggle</button>
@@ -565,9 +556,7 @@
             <input type="number" class="more-rows-start-index">
             <span>(leave blank to generate from next index)</span>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
                     <h2>More info</h2>
                     <h3>BIP39 <span class="small">Mnemonic code for generating deterministic keys</span></h3>
@@ -644,9 +633,7 @@
                 </div>
             </div>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
                     <h2>Alternative Tools</h2>
                     <p>This tool is interoperable with any BIP39 wallet.</p>
@@ -659,9 +646,8 @@
                 </div>
             </div>
 
-            <hr>
 
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
 
                     <h2>Offline Usage</h2>
@@ -686,9 +672,7 @@
                 </div>
             </div>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
 
                     <h2>This project is 100% open-source code</h2>
@@ -760,7 +744,7 @@
             <tr>
                 <td class="index"><span></span></td>
                 <td class="address"><span data-show-qr></span></td>
-                <td class="pubkey"><span data-show-qr></span></td>
+                <td class="hidden pubkey"><span data-show-qr></span></td>
                 <td class="privkey"><span data-show-qr></span></td>
             </tr>
         </script>
