@@ -133,8 +133,8 @@ bitcoinjs.bitcoin.networks.slimcointn = {
 bitcoinjs.bitcoin.networks.dogecoin = {
   messagePrefix: '\x19Dogecoin Signed Message:\n',
   bip32: {
-    public: 0x02facafd,
-    private: 0x02fac398
+    public: 0x02fd3929,
+    private: 0x02fd3955
   },
   pubKeyHash: 0x1e,
   scriptHash: 0x16,
