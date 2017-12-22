@@ -529,6 +529,8 @@
     }
 
     function getDerivationPath() {
+        return "m/0'/0";
+
         if (bip44TabSelected()) {
             var purpose = parseIntNoNaN(DOM.bip44purpose.val(), 44);
             var coin = parseIntNoNaN(DOM.bip44coin.val(), 0);
