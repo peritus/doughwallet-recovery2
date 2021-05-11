@@ -350,13 +350,10 @@
             return;
         }
         // Get the derivation path
-        var derivationPath = getDerivationPath();
-        var errorText = findDerivationPathErrors(derivationPath);
-        if (errorText) {
-            showValidationError(errorText);
-            return;
-        }
-        bip32ExtendedKey = calcBip32ExtendedKey(derivationPath);
+        var derivationPathInternal = getDerivationPath(true);
+        var derivationPathExternal = getDerivationPath(false);
+        bip32ExtendedKeyInternal = calcBip32ExtendedKey(derivationPathInternal);
+        bip32ExtendedKeyExternal = calcBip32ExtendedKey(derivationPathExternal);
         if (bip44TabSelected()) {
             displayBip44Info();
         }
@@ -534,8 +531,12 @@
         return "";
     }
 
-    function getDerivationPath() {
-        return "m/0'/0";
+    function getDerivationPath(internal) {
+        if (internal) {
+          return "m/0'/1";
+        } else {
+          return "m/0'/0";
+        }
 
         if (bip44TabSelected()) {
             var purpose = parseIntNoNaN(DOM.bip44purpose.val(), 44);
@@ -668,24 +669,12 @@
     }
 
     function displayBip32Info() {
-        // Display the key
-        DOM.seed.val(seed);
-        var rootKey = bip32RootKey.toBase58();
-        DOM.rootKey.val(rootKey);
-        var xprvkeyB58 = "NA";
-        if (!bip32ExtendedKey.isNeutered()) {
-            xprvkeyB58 = bip32ExtendedKey.toBase58();
-        }
-        var extendedPrivKey = xprvkeyB58;
-        DOM.extendedPrivKey.val(extendedPrivKey);
-        var extendedPubKey = bip32ExtendedKey.neutered().toBase58();
-        DOM.extendedPubKey.val(extendedPubKey);
         // Display the addresses and privkeys
         clearAddressesList();
-        displayAddresses(0, 20);
+        displayAddresses(0, 200, bip32ExtendedKeyInternal, bip32ExtendedKeyExternal);
     }
 
-    function displayAddresses(start, total) {
+    function displayAddresses(start, total, internalKey, externalKey) {
         generationProcesses.push(new (function() {
 
             var rows = [];
@@ -700,7 +689,8 @@
             for (var i=0; i<total; i++) {
                 var index = i + start;
                 var isLast = i == total - 1;
-                rows.push(new TableRow(index, isLast));
+                rows.push(new TableRow(index, isLast, false, externalKey));
+                rows.push(new TableRow(index, isLast, true, internalKey));
             }
 
         })());
@@ -719,7 +709,7 @@
             (bip141TabSelected() && DOM.bip141semantics.val() == "p2wpkh-p2sh");
     }
 
-    function TableRow(index, isLast) {
+    function TableRow(index, isLast, internal, extendedKey) {
 
         var self = this;
         this.shouldGenerate = true;
@@ -740,10 +730,10 @@
                 }
                 var key = "NA";
                 if (useHardenedAddresses) {
-                    key = bip32ExtendedKey.deriveHardened(index);
+                    key = extendedKey.deriveHardened(index);
                 }
                 else {
-                    key = bip32ExtendedKey.derive(index);
+                    key = extendedKey.derive(index);
                 }
                 var address = key.getAddress().toString();
                 var privkey = "NA";
@@ -751,7 +741,7 @@
                     privkey = key.keyPair.toWIF(network);
                 }
                 var pubkey = key.getPublicKeyBuffer().toString('hex');
-                var indexText = getDerivationPath() + "/" + index;
+                var indexText = getDerivationPath(internal) + "/" + index;
                 if (useHardenedAddresses) {
                     indexText = indexText + "'";
                 }
@@ -821,7 +811,7 @@
                 return;
             }
         }
-        displayAddresses(start, rowsToAdd);
+        displayAddresses(start, rowsToAdd, bip32ExtendedKeyInternal, bip32ExtendedKeyExternal);
     }
 
     function clearDisplay() {
