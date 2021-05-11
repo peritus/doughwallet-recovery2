@@ -42,7 +42,7 @@ for style in styles:
 
 # Write the standalone file
 
-f = open('doughwallet-recovery.html', 'w', encoding="utf-8")
+f = open('doughwallet-recovery2.html', 'w', encoding="utf-8")
 f.write(page)
 f.close()
 
