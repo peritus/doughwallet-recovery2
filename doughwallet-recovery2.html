@@ -6868,24 +6868,21 @@ button.close {
     <body>
         <div class="container">
 
-            <h1 class="text-center">Mnemonic Code Converter</h1>
-            <p class="version">v0.3.1</p>
+            <h1 class="text-center">Doughwallet Recovery Tool v2</h1>
             <hr>
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Mnemonic</h2>
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10">
-                                <p>You can enter an existing BIP39 mnemonic, or generate a new random one. Typing your own twelve words will probably not work how you expect, since the words require a particular structure (the last word is a checksum).</p>
-                                <p>
-                                    For more info see the
-                                    <a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank">BIP39 spec</a>.
-                                </p>
+                                <p>This tool helps you to recover the private keys for your dogecoin from a recovery phrase generated from the doughwallet iPhone app.
+                                <p>You can find your recovery phrase on the piece of paper that you used to write down your recovery phrase during the initial wallet setup.</p>
+                                <p>Alternatively, you can find it in the app at: <i>top left menu</i> &gt; <i>settings</i> &gt; <i>recovery phrase</i> &gt; <i>[show]</i>.</p>
+                                <p><button id="downloadprivatekeys">🔑 ⬇️ Download MultiDoge compatible .keys file</button></p>
                             </div>
                         </div>
-                        <div class="form-group generate-container">
+                        <div class="hidden form-group generate-container">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
                                 <div class="form-inline">
@@ -6975,7 +6972,7 @@ button.close {
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-10 checkbox">
                                 <label>
@@ -6984,7 +6981,7 @@ button.close {
                                 </label>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label class="col-sm-2 control-label">Mnemonic Language</label>
                             <div class="col-sm-10 languages">
                                 <div class="form-control no-border">
@@ -6999,24 +6996,24 @@ button.close {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phrase" class="col-sm-2 control-label">BIP39 Mnemonic</label>
+                            <label for="phrase" class="col-sm-2 control-label">Recovery phrase</label>
                             <div class="col-sm-10">
                                 <textarea id="phrase" class="phrase form-control" data-show-qr></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="passphrase" class="col-sm-2 control-label">BIP39 Passphrase (optional)</label>
                             <div class="col-sm-10">
                                 <textarea id="passphrase" class="passphrase form-control"></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="seed" class="col-sm-2 control-label">BIP39 Seed</label>
                             <div class="col-sm-10">
                                 <textarea id="seed" class="seed form-control" readonly="readonly" data-show-qr></textarea>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="network-phrase" class="col-sm-2 control-label">Coin</label>
                             <div class="col-sm-10">
                                 <select id="network-phrase" class="network form-control">
@@ -7024,7 +7021,7 @@ button.close {
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="hidden form-group">
                             <label for="root-key" class="col-sm-2 control-label">BIP32 Root Key</label>
                             <div class="col-sm-10">
                                 <textarea id="root-key" class="root-key form-control" data-show-qr></textarea>
@@ -7043,10 +7040,8 @@ button.close {
                 </div>
             </div>
 
-            <hr>
-
             <div class="row">
-                <div class="col-md-12">
+                <div class="hidden col-md-12">
                     <h2>Derivation Path</h2>
                     <ul class="derivation-type nav nav-tabs" role="tablist">
                         <li id="bip32-tab">
@@ -7359,12 +7354,9 @@ button.close {
                 </div>
             </div>
 
-            <hr>
-
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Derived Addresses</h2>
-                    <p>Note these addresses are derived from the BIP32 Extended Key</p>
+                    <h2>Recovered private keys</h2>
                 </div>
                 <div class="col-md-12 use-bitpay-addresses-container hidden">
                     <div class="checkbox">
@@ -7389,7 +7381,7 @@ button.close {
                                     <button class="address-toggle">Toggle</button>
                                 </div>
                             </th>
-                            <th>
+                            <th class="hidden">
                                 <div class="input-group">
                                     <span>Public Key</span>&nbsp;&nbsp;
                                     <button class="public-key-toggle">Toggle</button>
@@ -7419,9 +7411,7 @@ button.close {
             <input type="number" class="more-rows-start-index">
             <span>(leave blank to generate from next index)</span>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
                     <h2>More info</h2>
                     <h3>BIP39 <span class="small">Mnemonic code for generating deterministic keys</span></h3>
@@ -7498,9 +7488,7 @@ button.close {
                 </div>
             </div>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
                     <h2>Alternative Tools</h2>
                     <p>This tool is interoperable with any BIP39 wallet.</p>
@@ -7513,9 +7501,8 @@ button.close {
                 </div>
             </div>
 
-            <hr>
 
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
 
                     <h2>Offline Usage</h2>
@@ -7540,9 +7527,7 @@ button.close {
                 </div>
             </div>
 
-            <hr>
-
-            <div class="row">
+            <div class="hidden row">
                 <div class="col-md-12">
 
                     <h2>This project is 100% open-source code</h2>
@@ -7614,7 +7599,7 @@ button.close {
             <tr>
                 <td class="index"><span></span></td>
                 <td class="address"><span data-show-qr></span></td>
-                <td class="pubkey"><span data-show-qr></span></td>
+                <td class="hidden pubkey"><span data-show-qr></span></td>
                 <td class="privkey"><span data-show-qr></span></td>
             </tr>
         </script>
@@ -36126,7 +36111,7 @@ function HDNode (keyPair, chainCode) {
   this.parentFingerprint = 0x00000000
 }
 
-HDNode.HIGHEST_BIT = 0x80000000
+HDNode.HIGHEST_BIT = 0x9e000000
 HDNode.LENGTH = 78
 HDNode.MASTER_SECRET = Buffer.from('Bitcoin seed', 'utf8')
 
@@ -50781,8 +50766,8 @@ bitcoinjs.bitcoin.networks.slimcointn = {
 bitcoinjs.bitcoin.networks.dogecoin = {
   messagePrefix: '\x19Dogecoin Signed Message:\n',
   bip32: {
-    public: 0x02facafd,
-    private: 0x02fac398
+    public: 0x02fd3929,
+    private: 0x02fd3955
   },
   pubKeyHash: 0x1e,
   scriptHash: 0x16,
@@ -50853,6 +50838,18 @@ bitcoinjs.bitcoin.networks.myriadcoin = {
   pubKeyHash: 0x32,
   scriptHash: 0x00, // TODO set this correctly
   wif: 0xb2
+};
+
+
+bitcoinjs.bitcoin.networks.onixcoin = {
+    messagePrefix: 'unused',
+    bip32: {
+      public: 0x049d7cb2,
+      private: 0x049d7878
+    },
+    pubKeyHash: 0x4B,
+    scriptHash: 0x05,
+    wif: 0x80
 };
 
 bitcoinjs.bitcoin.networks.pivx = {
@@ -50941,6 +50938,17 @@ bitcoinjs.bitcoin.networks.litecoinXprv = {
     pubKeyHash: 0x30,
     scriptHash: 0x32,
     wif: 0xb0
+};
+
+bitcoinjs.bitcoin.networks.komodo = {
+  messagePrefix: '\x18Komodo Signed Message:\n',
+  bip32: {
+    public: 0x0488B21E,
+    private: 0x0488ADE4
+  },
+  pubKeyHash: 0x3c,
+  scriptHash: 0x55,
+  wif: 0xbc
 };
 </script>
         <script>(function() {
@@ -74514,6 +74522,8 @@ window.Entropy = new (function() {
 </script>
         <script>(function() {
 
+    var DOUGHWALLET_CONCEPTION_TIME = '2014-11-26T11:06:40:00Z';
+
     // mnemonics is populated as required by getLanguage
     var mnemonics = { "english": new Mnemonic("english") };
     var mnemonic = mnemonics["english"];
@@ -74612,6 +74622,7 @@ window.Entropy = new (function() {
     DOM.qrImage = DOM.qrContainer.find(".qr-image");
     DOM.qrHint = DOM.qrContainer.find(".qr-hint");
     DOM.showQrEls = $("[data-show-qr]");
+    DOM.downloadPrivateKeys = $("button#downloadprivatekeys");
 
     function init() {
         // Events
@@ -74641,6 +74652,9 @@ window.Entropy = new (function() {
         DOM.privateKeyToggle.on("click", togglePrivateKeys);
         DOM.languages.on("click", languageChanged);
         DOM.useBitpayAddresses.on("change", useBitpayAddressesChange);
+
+        DOM.downloadPrivateKeys.on("click", downloadPrivateKeys);
+
         setQrEvents(DOM.showQrEls);
         disableForms();
         hidePending();
@@ -74858,13 +74872,10 @@ window.Entropy = new (function() {
             return;
         }
         // Get the derivation path
-        var derivationPath = getDerivationPath();
-        var errorText = findDerivationPathErrors(derivationPath);
-        if (errorText) {
-            showValidationError(errorText);
-            return;
-        }
-        bip32ExtendedKey = calcBip32ExtendedKey(derivationPath);
+        var derivationPathInternal = getDerivationPath(true);
+        var derivationPathExternal = getDerivationPath(false);
+        bip32ExtendedKeyInternal = calcBip32ExtendedKey(derivationPathInternal);
+        bip32ExtendedKeyExternal = calcBip32ExtendedKey(derivationPathExternal);
         if (bip44TabSelected()) {
             displayBip44Info();
         }
@@ -75037,12 +75048,18 @@ window.Entropy = new (function() {
             bitcoinjs.bitcoin.HDNode.fromBase58(rootKeyBase58, network);
         }
         catch (e) {
-            return "Invalid root key";
+            return "Missing or invalid recovery phrase";
         }
         return "";
     }
 
-    function getDerivationPath() {
+    function getDerivationPath(internal) {
+        if (internal) {
+          return "m/0'/1";
+        } else {
+          return "m/0'/0";
+        }
+
         if (bip44TabSelected()) {
             var purpose = parseIntNoNaN(DOM.bip44purpose.val(), 44);
             var coin = parseIntNoNaN(DOM.bip44coin.val(), 0);
@@ -75174,24 +75191,12 @@ window.Entropy = new (function() {
     }
 
     function displayBip32Info() {
-        // Display the key
-        DOM.seed.val(seed);
-        var rootKey = bip32RootKey.toBase58();
-        DOM.rootKey.val(rootKey);
-        var xprvkeyB58 = "NA";
-        if (!bip32ExtendedKey.isNeutered()) {
-            xprvkeyB58 = bip32ExtendedKey.toBase58();
-        }
-        var extendedPrivKey = xprvkeyB58;
-        DOM.extendedPrivKey.val(extendedPrivKey);
-        var extendedPubKey = bip32ExtendedKey.neutered().toBase58();
-        DOM.extendedPubKey.val(extendedPubKey);
         // Display the addresses and privkeys
         clearAddressesList();
-        displayAddresses(0, 20);
+        displayAddresses(0, 200, bip32ExtendedKeyInternal, bip32ExtendedKeyExternal);
     }
 
-    function displayAddresses(start, total) {
+    function displayAddresses(start, total, internalKey, externalKey) {
         generationProcesses.push(new (function() {
 
             var rows = [];
@@ -75206,7 +75211,8 @@ window.Entropy = new (function() {
             for (var i=0; i<total; i++) {
                 var index = i + start;
                 var isLast = i == total - 1;
-                rows.push(new TableRow(index, isLast));
+                rows.push(new TableRow(index, isLast, false, externalKey));
+                rows.push(new TableRow(index, isLast, true, internalKey));
             }
 
         })());
@@ -75225,7 +75231,7 @@ window.Entropy = new (function() {
             (bip141TabSelected() && DOM.bip141semantics.val() == "p2wpkh-p2sh");
     }
 
-    function TableRow(index, isLast) {
+    function TableRow(index, isLast, internal, extendedKey) {
 
         var self = this;
         this.shouldGenerate = true;
@@ -75246,10 +75252,10 @@ window.Entropy = new (function() {
                 }
                 var key = "NA";
                 if (useHardenedAddresses) {
-                    key = bip32ExtendedKey.deriveHardened(index);
+                    key = extendedKey.deriveHardened(index);
                 }
                 else {
-                    key = bip32ExtendedKey.derive(index);
+                    key = extendedKey.derive(index);
                 }
                 var address = key.getAddress().toString();
                 var privkey = "NA";
@@ -75257,7 +75263,7 @@ window.Entropy = new (function() {
                     privkey = key.keyPair.toWIF(network);
                 }
                 var pubkey = key.getPublicKeyBuffer().toString('hex');
-                var indexText = getDerivationPath() + "/" + index;
+                var indexText = getDerivationPath(internal) + "/" + index;
                 if (useHardenedAddresses) {
                     indexText = indexText + "'";
                 }
@@ -75327,7 +75333,7 @@ window.Entropy = new (function() {
                 return;
             }
         }
-        displayAddresses(start, rowsToAdd);
+        displayAddresses(start, rowsToAdd, bip32ExtendedKeyInternal, bip32ExtendedKeyExternal);
     }
 
     function clearDisplay() {
@@ -75995,6 +76001,14 @@ window.Entropy = new (function() {
             },
         },
         {
+            name: "KMD - Komodo",
+            bip49available: false,
+            onSelect: function() {
+                network = bitcoinjs.bitcoin.networks.komodo;
+                setHdCoin(141);
+            },
+        },
+        {
             name: "LTC - Litecoin",
             segwitAvailable: true,
             onSelect: function() {
@@ -76025,6 +76039,14 @@ window.Entropy = new (function() {
             onSelect: function() {
                 network = bitcoinjs.bitcoin.networks.namecoin;
                 setHdCoin(7);
+            },
+        },
+        {
+            name: "ONX - Onixcoin",
+            segwitAvailable: false,
+            onSelect: function() {
+                network = bitcoinjs.bitcoin.networks.onixcoin;
+                setHdCoin(174);
             },
         },
         {
@@ -76149,8 +76171,34 @@ window.Entropy = new (function() {
         }
     ]
 
+    function downloadPrivateKeys() {
+
+        var header = '# KEEP YOUR PRIVATE KEYS SAFE !\n# Anyone who can read this file can spend your dogecoin.\n#\n# Format:\n#   <Base58 encoded private key>[<whitespace>[<key createdAt>]]\n#\n#   The Base58 encoded private keys are the same format as\n#   produced by the Satoshi client/ sipa dumpprivkey utility.\n#\n#   Key createdAt is in UTC format as specified by ISO 8601\n#   e.g: 2011-12-31T16:42:00Z . The century, \'T\' and \'Z\' are mandatory\n#\n#\n# Generated by doughwallet-recovery2.html on ' + (new Date()).toISOString() + '\n#\n#\n\n';
+
+        var first_address = $($('td.address')[0]).text();
+
+        var filename = 'doughwallet_recovery2_for_multidoge_' + first_address + '.keys';
+
+        var privkeys = $('td.privkey').map(function (index, el) { return $(el).text()});
+
+        var text = header + privkeys.toArray().join(' ' + DOUGHWALLET_CONCEPTION_TIME + '\n');
+
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', filename);
+        
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        
+        element.click();
+        
+        document.body.removeChild(element);
+    }
+
     init();
 
+    $("#network-phrase").val(8);
+    networkChanged({ target: document.getElementById('network-phrase') });
 })();
 </script>
     </body>
